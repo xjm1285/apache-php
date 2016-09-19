@@ -2,15 +2,7 @@ FROM debian:jessie
 MAINTAINER Alex Brandt <alunduil@alunduil.com>
 
 COPY ./zend /usr/lib/php5
-RUN echo "deb http://mirrors.ustc.edu.cn/debian/ jessie main contrib non-free" > /etc/apt/sources.list && \
-    echo "deb-src http://mirrors.ustc.edu.cn/debian/ jessie main contrib non-free" >> /etc/apt/sources.list && \
-    echo "deb http://mirrors.ustc.edu.cn/debian/ jessie-updates main contrib non-free" >> /etc/apt/sources.list && \
-    echo "deb-src http://mirrors.ustc.edu.cn/debian/ jessie-updates main contrib non-free" >> /etc/apt/sources.list && \
-    echo "deb http://mirrors.ustc.edu.cn/debian/ jessie-backports main contrib non-free" >> /etc/apt/sources.list && \
-    echo "deb-src http://mirrors.ustc.edu.cn/debian/ jessie-backports main contrib non-free" >> /etc/apt/sources.list && \
-    echo "deb http://mirrors.ustc.edu.cn/debian-security/ jessie/updates main contrib non-free" >> /etc/apt/sources.list && \
-    echo "deb-src http://mirrors.ustc.edu.cn/debian-security/ jessie/updates main contrib non-free" >> /etc/apt/sources.list && \
-    apt-get -qq update && \
+RUN apt-get -qq update && \
     apt-get install -qq --no-install-recommends apache2-mpm-event ca-certificates php5 php-pear php5-mysql php5-json php5-mcrypt php5-gd php5-curl php5-intl php5-redis php5-xsl && \
     pear install mail_mime mail_mimedecode net_smtp net_idna2-beta auth_sasl net_sieve crypt_gpg && \
     rm -rf /var/lib/apt/lists/*
